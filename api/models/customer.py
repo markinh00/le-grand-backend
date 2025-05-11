@@ -9,6 +9,6 @@ class Customer(SQLModel, table=True):
     phone: str
     password: str
 
-    addresses: list["Address"] = Relationship(back_populates="customer")
+    addresses: list["Address"] = Relationship(back_populates="customer", cascade_delete=True)
 
 from api.models.address import Address

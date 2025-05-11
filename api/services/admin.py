@@ -7,7 +7,7 @@ from api.services.db.database import get_session
 
 class AdminService:
     def __init__(self):
-        self.repository = AdminRepository(session=get_session())
+        self.repository = AdminRepository(session=next(get_session()))
 
     def create_admin(self, admin_data: AdminRegister) -> Admin:
         new_admin = Admin(name=admin_data.name, email=admin_data.email, password=admin_data.password)
