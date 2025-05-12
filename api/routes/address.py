@@ -3,7 +3,7 @@ from fastapi import APIRouter, Security
 from starlette import status
 from starlette.exceptions import HTTPException
 from api.dependencies.auth import get_current_user
-from api.schemas.Message import Message
+from api.schemas.message import Message
 from api.schemas.address import AddressRead, AddressCreate, AddressUpdate
 from api.schemas.customer import CustomerRead
 from api.schemas.user import UserScopes

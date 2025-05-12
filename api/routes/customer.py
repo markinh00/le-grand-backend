@@ -4,7 +4,7 @@ from fastapi.params import Security, Query
 from starlette.exceptions import HTTPException
 from starlette import status
 
-from api.schemas.Message import Message
+from api.schemas.message import Message
 from api.schemas.customer import CustomerRead, CustomerUpdate
 from api.schemas.pagination import CustomerPagination
 from api.schemas.user import UserScopes

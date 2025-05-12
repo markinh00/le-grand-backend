@@ -5,7 +5,7 @@ from starlette import status
 from starlette.exceptions import HTTPException
 
 from api.dependencies.auth import get_current_user
-from api.schemas.Message import Message
+from api.schemas.message import Message
 from api.schemas.pagination import ProductPagination
 from api.schemas.product import ProductRead, ProductCreate, ProductUpdate
 from api.schemas.user import UserScopes
@@ -103,6 +103,6 @@ def delete_product(product_id: int):
     if not success:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="User not found")
+            detail="Product not found")
 
     return Message(detail="Product deleted successfully")

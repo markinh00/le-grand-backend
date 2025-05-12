@@ -5,7 +5,7 @@ from api.repositories.product import ProductRepository
 from api.schemas.pagination import ProductPagination
 from api.schemas.product import ProductCreate, ProductRead, ProductUpdate
 from api.services.db.sqlmodel.database import get_session
-from api.services.db.image import upload_image
+from api.services.db.image_storage import upload_image
 
 
 class ProductService:

@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from sqlmodel import select
 from api.dependencies.populate import populate_database
 from api.models.product import Product
-from api.services.db.image import delete_image
+from api.services.db.image_storage import delete_image
 from api.services.db.sqlmodel.database import get_session
 
 router = APIRouter(prefix="/reset", tags=["Reset"])

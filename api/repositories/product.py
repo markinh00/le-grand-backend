@@ -4,7 +4,7 @@ from sqlmodel import Session, select, desc, distinct
 from api.models.product import Product
 from api.schemas.pagination import ProductPagination
 from api.schemas.product import ProductUpdate
-from api.services.db.image import upload_image, delete_image
+from api.services.db.image_storage import upload_image, delete_image
 
 
 class ProductRepository:

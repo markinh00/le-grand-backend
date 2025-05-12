@@ -51,3 +51,12 @@ class ProductUpdate(BaseModel):
                 detail="deleting and updating a image is not possible!"
             )
         return self
+
+class ProductInOrder(BaseModel):
+    id: int
+    name: str
+    price: float
+    description: str
+    category: str
+    img_url: str
+    quantity: int

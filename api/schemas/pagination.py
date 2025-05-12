@@ -26,3 +26,12 @@ class ProductOrderEnum(Enum):
 
 class ProductPagination(Pagination):
     order: ProductOrderEnum = Field(default=ProductOrderEnum.NAME)
+
+class DiscountOrderEnum(Enum):
+    ID = "id"
+    NAME = "name"
+    VALUE = "value"
+    ENABLED = "enabled"
+
+class DiscountPagination(Pagination):
+    order: DiscountOrderEnum = Field(default=DiscountOrderEnum.NAME.value)
