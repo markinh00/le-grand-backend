@@ -2,7 +2,7 @@ from typing import List, Optional
 from api.models.admin import Admin
 from api.repositories.admin import AdminRepository
 from api.schemas.admin import AdminUpdate, AdminRegister
-from api.services.db.database import get_session
+from api.services.db.sqlmodel.database import get_session
 
 
 class AdminService:

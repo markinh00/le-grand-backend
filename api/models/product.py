@@ -6,5 +6,6 @@ class Product(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str
     price: float
-    description: Optional[str] = None
+    description: str
     category: Optional[str] = None
+    img_url: str

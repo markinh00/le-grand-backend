@@ -4,7 +4,7 @@ from api.models.admin import Admin
 from api.models.customer import Customer
 from api.models.discount import Discount
 from api.models.product import Product
-from api.services.db.database import reset_database, get_session
+from api.services.db.sqlmodel.database import reset_database, get_session
 
 
 def populate_database():
@@ -34,12 +34,13 @@ def populate_database():
     discount2 = Discount(name="Promoção de Pães", value=5)
 
     product1 = Product(name="Cookie de Chocolate", price=4.5, description="Feito com chocolate belga",
-                       category="Cookies")
-    product2 = Product(name="Cookie de Aveia e Mel", price=3.5, description="Saudável e saboroso", category="Cookies")
+                       category="Cookies", img_url="http://localhost:8000/image/572cb3da-e0d7-4849-afca-3bb7c4be24f6.jpeg")
+    product2 = Product(name="Cookie de Aveia e Mel", price=3.5, description="Saudável e saboroso",
+                       category="Cookies", img_url="http://localhost:8000/image/75804a10-0407-478d-9cc0-384960dd55a0.jpg")
     product3 = Product(name="Pão Francês", price=0.8, description="Crocante por fora, macio por dentro",
-                       category="Pães")
+                       category="Pães", img_url="http://localhost:8000/image/fc99b584-0b45-4b3f-aa7b-f1ed50e40031.jpg")
     product4 = Product(name="Pão de Queijo", price=2.5, description="Feito com queijo da Serra da Canastra",
-                       category="Pães")
+                       category="Pães", img_url="http://localhost:8000/image/ca00107e-4498-4e6a-9567-bc6ebed9a2f5.jpg")
 
     session.add_all([address1, address2, discount1, discount2, product1, product2, product3, product4])
     session.commit()

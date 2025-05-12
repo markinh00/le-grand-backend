@@ -4,7 +4,7 @@ from api.models.address import Address
 from api.models.customer import Customer
 from api.repositories.address import AddressRepository
 from api.schemas.address import AddressCreate, AddressUpdate
-from api.services.db.database import get_session
+from api.services.db.sqlmodel.database import get_session
 
 
 class AddressService:

@@ -91,4 +91,4 @@ def delete_address(
             detail="User not found")
 
 
-    return Message(detail="Customer deleted successfully")
+    return Message(detail="Address deleted successfully")

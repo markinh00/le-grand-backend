@@ -5,7 +5,7 @@ from api.models.customer import Customer
 from api.repositories.customer import CustomerRepository
 from api.schemas.customer import CustomerRegister, CustomerUpdate
 from api.schemas.pagination import CustomerPagination
-from api.services.db.database import get_session
+from api.services.db.sqlmodel.database import get_session
 
 
 class CustomerService:

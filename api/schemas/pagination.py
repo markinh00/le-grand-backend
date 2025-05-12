@@ -20,6 +20,7 @@ class ProductOrderEnum(Enum):
     ID = "id"
     NAME = "name"
     PRICE = "price"
+    DESCRIPTION = "description"
     CATEGORY = "category"
     IMG = "img_url"
 

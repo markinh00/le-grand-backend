@@ -3,6 +3,8 @@ services:
     build: ./
     ports:
       - "8000:8000"
+    volumes:
+      - ./images:/app/images
     environment:
       - PGURL=postgresql://postgres:postgres@db:5432/le-grand
     depends_on:
@@ -11,6 +13,9 @@ services:
   db:
     image: postgres:15
     restart: always
+    build:
+      context: api/services/db/sqlmodel
+      dockerfile: Dockerfile
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
