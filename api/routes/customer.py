@@ -3,7 +3,6 @@ from fastapi import APIRouter
 from fastapi.params import Security, Query
 from starlette.exceptions import HTTPException
 from starlette import status
-
 from api.schemas.message import Message
 from api.schemas.customer import CustomerRead, CustomerUpdate
 from api.schemas.pagination import CustomerPagination
@@ -11,12 +10,16 @@ from api.schemas.user import UserScopes
 from api.services.customer import CustomerService
 from api.dependencies.auth import get_current_user
 
+
 router = APIRouter(prefix="/customer", tags=["Customer"])
 
 service = CustomerService()
 
 
-@router.get("/", response_model=list[CustomerRead], dependencies=[Security(get_current_user, scopes=[UserScopes.ADMIN.value])])
+@router.get(
+    "/",
+    response_model=list[CustomerRead],
+    dependencies=[Security(get_current_user, scopes=[UserScopes.ADMIN.value])])
 def get_all_customers(query: Annotated[CustomerPagination, Query()]):
     return service.get_all_customers(query)
 
