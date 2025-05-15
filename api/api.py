@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Security
 from starlette.middleware.cors import CORSMiddleware
 from api.dependencies.auth import get_api_key
-from api.routes import customer, address, product, image, reset, discount, order
+from api.routes import customer, address, product, image, reset, discount, order, admin
 from api.routes.auth import register, login
 
 
@@ -17,6 +17,7 @@ app.add_middleware(
 
 app.include_router(register.router)
 app.include_router(login.router)
+app.include_router(admin.router)
 app.include_router(customer.router)
 app.include_router(address.router)
 app.include_router(product.router)
