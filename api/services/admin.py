@@ -22,8 +22,8 @@ class AdminService:
     def get_all_admins(self) -> List[Admin]:
         return self.repository.get_all()
 
-    def update_admin(self, admin_id: int, updated_data: AdminUpdate) -> Optional[Admin]:
-        return self.repository.update(admin_id, updated_data)
+    def update_admin(self, admin_id: int, update_data: AdminUpdate) -> Optional[Admin]:
+        return self.repository.update(admin_id, update_data)
 
     def delete_admin(self, admin_id: int) -> bool:
         return self.repository.delete(admin_id)

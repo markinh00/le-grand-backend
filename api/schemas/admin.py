@@ -7,6 +7,12 @@ class AdminRegister(BaseModel):
     password: str
     confirmPassword:  str
 
+class AdminRead(BaseModel):
+    name: str
+    email: str
+
+    class Config:
+        from_attributes = True
+
 class AdminUpdate(BaseModel):
     name: str | None = Field(default=None)
-    telephone: str | None = Field(default=None)
