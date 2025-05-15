@@ -14,12 +14,14 @@ class ProductCreate(BaseModel):
 
     @model_validator(mode="after")
     def validate_file_type(self) -> Self:
+        self.price = round(self.price, 2)
         if self.img_file and not self.img_file.content_type.startswith("image/"):
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="The uploaded file must be an image."
             )
         return self
+
 
 class ProductRead(BaseModel):
     id: int
@@ -28,6 +30,10 @@ class ProductRead(BaseModel):
     description: str
     category: str
     img_url: str
+
+    class Config:
+        from_attributes = True
+
 
 class ProductUpdate(BaseModel):
     name: str | None = Field(default=None)
@@ -52,7 +58,13 @@ class ProductUpdate(BaseModel):
             )
         return self
 
-class ProductInOrder(BaseModel):
+
+class ProductInOrderCreate(BaseModel):
+    id: int
+    quantity: int
+
+
+class ProductInOrderRead(BaseModel):
     id: int
     name: str
     price: float

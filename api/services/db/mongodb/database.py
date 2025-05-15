@@ -1,5 +1,8 @@
 import os
 import pymongo
+from pymongo import MongoClient
+from pymongo.synchronous.collection import Collection
+from pymongo.synchronous.database import Database
 
 
 class MongoDB:
@@ -13,6 +16,6 @@ class MongoDB:
 
     def _initialize(self):
         MONGO_URI = f"mongodb://{os.getenv('MONGODB_USER')}:{os.getenv('MONGODB_PASSWORD')}@{os.getenv('MONGODB_HOST')}/{os.getenv('MONGODB_DATABASE')}?authSource=admin"
-        self.client = pymongo.MongoClient(MONGO_URI)
-        self.database = self.client[os.getenv("MONGODB_DATABASE")]
-        self.collection = self.database[os.getenv("MONGODB_COLLECTION")]
+        self.client: MongoClient = pymongo.MongoClient(MONGO_URI)
+        self.database: Database = self.client[os.getenv("MONGODB_DATABASE")]
+        self.collection: Collection = self.database[os.getenv("MONGODB_COLLECTION")]

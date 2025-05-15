@@ -15,7 +15,7 @@ def get_session():
         yield session
 
 
-def reset_database():
+def reset_postgresql():
     meta = SQLModel.metadata
 
     with contextlib.closing(engine.connect()) as con:

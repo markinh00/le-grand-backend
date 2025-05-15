@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class DiscountRead(BaseModel):
@@ -9,10 +9,15 @@ class DiscountRead(BaseModel):
 
 class DiscountCreate(BaseModel):
     name: str
-    value: int
+    value: int = Field(ge=0, le=100)
     enabled: bool | None = None
 
 class DiscountUpdate(BaseModel):
     name: str | None = None
     value: int | None = None
     enabled: bool | None = None
+
+class DiscountInOrder(BaseModel):
+    id: int
+    name: str
+    value: int

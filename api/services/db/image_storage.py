@@ -12,6 +12,8 @@ protected_img = [
     "75804a10-0407-478d-9cc0-384960dd55a0.jpg",
     "ca00107e-4498-4e6a-9567-bc6ebed9a2f5.jpg",
     "fc99b584-0b45-4b3f-aa7b-f1ed50e40031.jpg",
+    "cee3f6f9-4fc3-4c82-a22d-aaf4828b9cc7.jpg",
+    "845b25f1-a7bf-4d89-aab8-17a068b51943.jpg",
     "default-placeholder.png"
 ]
 

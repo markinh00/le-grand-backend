@@ -8,6 +8,7 @@ class UserScopes(Enum):
     ADMIN = "admin"
     CUSTOMER = "customer"
 
+
 class User(BaseModel):
     data: Admin | Customer
     scope: UserScopes

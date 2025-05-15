@@ -35,3 +35,14 @@ class DiscountOrderEnum(Enum):
 
 class DiscountPagination(Pagination):
     order: DiscountOrderEnum = Field(default=DiscountOrderEnum.NAME.value)
+
+class OrdersOrderEnum(Enum):
+    ID = "_id"
+    CUSTOMER_NAME = "customer.name"
+    DISCOUNT_NAME = "discount.name"
+    DISCOUNT_VALUE = "discount.value"
+    TOTAL = "total"
+    CREATED_AT = "created_at"
+
+class OrderPagination(Pagination):
+    order: OrdersOrderEnum = Field(default=OrdersOrderEnum.CREATED_AT)

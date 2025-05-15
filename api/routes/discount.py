@@ -6,7 +6,7 @@ from api.dependencies.auth import get_current_user
 from api.schemas.message import Message
 from api.schemas.discount import DiscountCreate, DiscountRead, DiscountUpdate
 from api.schemas.pagination import DiscountPagination
-from api.schemas.user import UserScopes
+from api.schemas.user import UserScopes, User
 from api.services.discount import DiscountService
 
 
@@ -37,13 +37,22 @@ def get_all_customers(query: Annotated[DiscountPagination, Query()]):
     response_model=DiscountRead,
     dependencies=[Security(get_current_user, scopes=[UserScopes.ADMIN.value, UserScopes.CUSTOMER.value])]
 )
-def get_discount_by_name(discount_name: str):
+def get_discount_by_name(
+        discount_name: str,
+        current_user: Annotated[User, Security(get_current_user, scopes=[UserScopes.CUSTOMER.value, UserScopes.ADMIN.value])]
+):
     result = service.get_discount_by_name(discount_name)
 
     if not result:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Discount not found"
+        )
+
+    if current_user.scope == UserScopes.CUSTOMER and not result.enabled:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Discount not enabled"
         )
 
     return  result

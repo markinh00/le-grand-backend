@@ -1,9 +1,7 @@
 from typing import Annotated
-
 from fastapi import APIRouter, Form, UploadFile, Query, Security
 from starlette import status
 from starlette.exceptions import HTTPException
-
 from api.dependencies.auth import get_current_user
 from api.schemas.message import Message
 from api.schemas.pagination import ProductPagination
@@ -39,8 +37,7 @@ def create_product(
 
 @router.get(
     "/",
-    response_model=list[ProductRead],
-    dependencies=[Security(get_current_user, scopes=[UserScopes.ADMIN.value, UserScopes.CUSTOMER.value])])
+    response_model=list[ProductRead])
 def get_all_products(query: Annotated[ProductPagination, Query()]):
     return  service.get_all_products(query)
 

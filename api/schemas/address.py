@@ -14,6 +14,10 @@ class AddressRead(BaseModel):
 
     customer_id: int
 
+    class Config:
+        from_attributes = True
+
+
 class AddressCreate(BaseModel):
     street: str
     number: int
@@ -25,11 +29,30 @@ class AddressCreate(BaseModel):
 
     customer_id: int
 
+
 class AddressUpdate(BaseModel):
     street: str | None = None
-    number: int  | None = None
+    number: int | None = None
     complement: str | None = None
-    neighborhood: str  | None = None
-    city: str  | None = None
-    state: str  | None = None
-    zip_code: str  | None = None
+    neighborhood: str | None = None
+    city: str | None = None
+    state: str | None = None
+    zip_code: str | None = None
+
+class AddressInOrderCreate(BaseModel):
+    street: str
+    number: int
+    complement: Optional[str] = None
+    neighborhood: str
+    city: str
+    state: str
+    zip_code: str
+
+class AddressInOrderRead(BaseModel):
+    street: str
+    number: int
+    complement: Optional[str] = None
+    neighborhood: str
+    city: str
+    state: str
+    zip_code: str

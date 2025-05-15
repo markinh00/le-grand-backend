@@ -6,14 +6,14 @@ services:
     volumes:
       - ./images:/app/images
     environment:
-      - PGURL=postgresql://postgres:postgres@db:5432/le-grand
+      - PGURL=postgresql://postgres:postgres@postgresql:5432/le-grand
     depends_on:
-      - db
+      - postgresql
       - mongo
     networks:
       - my_network
 
-  db:
+  postgresql:
     image: postgres:15
     restart: always
     build:
