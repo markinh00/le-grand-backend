@@ -37,7 +37,7 @@ def get_customer_orders(
 ):
     if current_user.data.id != customer_id and current_user.scope == UserScopes.CUSTOMER:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="A Customer cannot access another customer's data"
         )
 
@@ -55,7 +55,7 @@ def get_order_by_id(
 
     if order.customer.id != current_user.data.id:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="A Customer cannot access another customer's data"
         )
 

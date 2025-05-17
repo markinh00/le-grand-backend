@@ -31,7 +31,7 @@ def get_customer_by_id(
 ):
     if current_user.data.id != customer_id and current_user.scope != UserScopes.ADMIN:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="A customer cannot access another customer's data"
         )
 
@@ -53,7 +53,7 @@ def update_customer(
 ):
     if current_user.data.id != customer_id and current_user.scope != UserScopes.ADMIN:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="A customer cannot alter another customer's data"
         )
 
@@ -74,7 +74,7 @@ def delete_customer(
 ):
     if current_user.data.id != customer_id and current_user.scope != UserScopes.ADMIN:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="A customer cannot delete another customer's data"
         )
 

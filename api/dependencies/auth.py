@@ -53,17 +53,24 @@ def get_password_hash(password: str):
     return pwd_context.hash(password)
 
 
-def authenticate_user(email: str, password: str, scope: UserScopes) -> Admin | Customer | bool:
-    user: Admin | Customer | None = None
+def authenticate_user(email: str, password: str) -> User | bool:
+    found_user = costumer_service.get_customer_by_email(email)
+    user: User | None = None
 
-    if scope == UserScopes.ADMIN.value:
-        user = admin_service.get_admin_by_email(email)
-    elif scope == UserScopes.CUSTOMER.value:
-        user = costumer_service.get_customer_by_email(email)
+    if found_user:
+        user = User(data=found_user, scope=UserScopes.CUSTOMER)
+
+    if not found_user:
+        found_user = admin_service.get_admin_by_email(email)
+
+        if not found_user:
+            return False
+
+        user = User(data=found_user, scope=UserScopes.ADMIN)
 
     if not user:
         return False
-    if not verify_password(password, user.password):
+    if not verify_password(password, user.data.password):
         return False
     return user
 

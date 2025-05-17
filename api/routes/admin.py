@@ -8,9 +8,9 @@ from api.schemas.user import UserScopes
 from api.services.admin import AdminService
 
 router = APIRouter(
-    prefix="admin",
+    prefix="/admin",
     tags=["Admin"],
-    dependencies=Security(get_current_user, scopes=UserScopes.ADMIN.value)
+    dependencies=[Security(get_current_user, scopes=UserScopes.ADMIN.value)]
 )
 
 service = AdminService()

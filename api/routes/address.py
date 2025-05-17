@@ -22,7 +22,7 @@ def add_address_to_customer(
 ):
     if current_user.data.id != new_address.customer_id and current_user.scope != UserScopes.ADMIN:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="A customer cannot add an address to another customer"
         )
 
@@ -38,7 +38,7 @@ def get_address_dy_id(
 
     if current_user.data.id != address.customer_id and current_user.scope != UserScopes.ADMIN:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="A customer does not have access to another customer's data"
         )
 
@@ -55,7 +55,7 @@ def update_address(
 
     if current_user.data.id != address.customer_id and current_user.scope != UserScopes.ADMIN:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="A customer does not have access to another customer's data"
         )
 
@@ -79,7 +79,7 @@ def delete_address(
 
     if current_user.data.id != address.customer_id and current_user.scope != UserScopes.ADMIN:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="A customer cannot delete another customer's data"
         )
 

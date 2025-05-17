@@ -1,5 +1,4 @@
 import copy
-
 from bson import ObjectId
 from pymongo.synchronous.collection import Collection
 from sqlmodel import Session
