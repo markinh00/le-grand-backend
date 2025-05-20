@@ -1,11 +1,13 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Security
 from sqlmodel import select
+
+from api.dependencies.auth import get_api_key
 from api.dependencies.populate import populate_database
 from api.models.product import Product
 from api.services.db.image_storage import delete_image
 from api.services.db.sqlmodel.database import get_session
 
-router = APIRouter(prefix="/reset", tags=["Reset"])
+router = APIRouter(prefix="/reset", tags=["Reset"], dependencies=[Security(get_api_key)])
 
 
 # This route will override everything inside the database. Be careful while using it

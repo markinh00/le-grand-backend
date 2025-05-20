@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Security
 from starlette import status
 from starlette.exceptions import HTTPException
-from api.dependencies.auth import get_current_user
+from api.dependencies.auth import get_current_user, get_api_key
 from api.schemas.admin import AdminRead, AdminRegister, AdminUpdate
 from api.schemas.message import Message
 from api.schemas.user import UserScopes
@@ -10,7 +10,7 @@ from api.services.admin import AdminService
 router = APIRouter(
     prefix="/admin",
     tags=["Admin"],
-    dependencies=[Security(get_current_user, scopes=UserScopes.ADMIN.value)]
+    dependencies=[Security(get_current_user, scopes=UserScopes.ADMIN.value), Security(get_api_key)]
 )
 
 service = AdminService()

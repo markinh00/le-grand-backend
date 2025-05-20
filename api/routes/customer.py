@@ -8,10 +8,9 @@ from api.schemas.customer import CustomerRead, CustomerUpdate
 from api.schemas.pagination import CustomerPagination
 from api.schemas.user import UserScopes
 from api.services.customer import CustomerService
-from api.dependencies.auth import get_current_user
+from api.dependencies.auth import get_current_user, get_api_key
 
-
-router = APIRouter(prefix="/customer", tags=["Customer"])
+router = APIRouter(prefix="/customer", tags=["Customer"], dependencies=[Security(get_api_key)])
 
 service = CustomerService()
 

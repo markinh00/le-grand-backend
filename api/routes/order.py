@@ -2,14 +2,14 @@ from typing import Annotated
 from fastapi import APIRouter, Query, Security
 from starlette import status
 from starlette.exceptions import HTTPException
-from api.dependencies.auth import get_current_user
+from api.dependencies.auth import get_current_user, get_api_key
 from api.schemas.message import Message
 from api.schemas.order import DeliveryCreate, PickUpCreate, DeliveryUpdate, PickUpUpdate, DeliveryRead, PickUpRead
 from api.schemas.pagination import OrderPagination
 from api.schemas.user import UserScopes, User
 from api.services.order import OrderService
 
-router = APIRouter(prefix="/order", tags=["Order"])
+router = APIRouter(prefix="/order", tags=["Order"], dependencies=[Security(get_api_key)])
 
 service = OrderService()
 

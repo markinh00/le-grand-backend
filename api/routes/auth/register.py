@@ -1,16 +1,17 @@
 import os
 from datetime import timedelta
 from dotenv import load_dotenv
-from fastapi import APIRouter
+from fastapi import APIRouter, Security
 from starlette.exceptions import HTTPException
 from starlette import status
 from api.schemas.jwt_token import Token
 from api.schemas.customer import CustomerRegister
+from api.schemas.user import UserScopes
 from api.services.admin import AdminService
 from api.services.customer import CustomerService
-from api.dependencies.auth import create_access_token, get_password_hash
+from api.dependencies.auth import create_access_token, get_password_hash, get_api_key
 
-router = APIRouter(prefix="/auth/register", tags=["Auth"])
+router = APIRouter(prefix="/auth/register", tags=["Auth"], dependencies=[Security(get_api_key)])
 
 admin_service = AdminService()
 user_service = CustomerService()
@@ -40,7 +41,7 @@ def register_user(user_data: CustomerRegister) -> Token:
 
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
         access_token = create_access_token(
-            data={"sub": result.email}, expires_delta=access_token_expires
+            data={"sub": result.email, "scopes": [UserScopes.CUSTOMER.value]}, expires_delta=access_token_expires
         )
 
         return Token(access_token=access_token, token_type="bearer")

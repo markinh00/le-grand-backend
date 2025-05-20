@@ -2,7 +2,7 @@ from typing import Annotated
 from fastapi import APIRouter, Security
 from starlette import status
 from starlette.exceptions import HTTPException
-from api.dependencies.auth import get_current_user
+from api.dependencies.auth import get_current_user, get_api_key
 from api.schemas.message import Message
 from api.schemas.address import AddressRead, AddressCreate, AddressUpdate
 from api.schemas.customer import CustomerRead
@@ -10,7 +10,7 @@ from api.schemas.user import UserScopes
 from api.services.address import AddressService
 
 
-router = APIRouter(prefix="/address", tags=["Address"])
+router = APIRouter(prefix="/address", tags=["Address"], dependencies=[Security(get_api_key)])
 
 service = AddressService()
 

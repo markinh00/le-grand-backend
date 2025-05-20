@@ -107,7 +107,8 @@ def get_current_user(security_scopes: SecurityScopes, token: Annotated[str, Depe
         token_data = TokenData(scopes=token_scopes, email=email)
     except (JWTError, ValidationError):
         raise credentials_exception
-
+    print("email:", email)
+    print("token_data:", token_data)
     for scope in token_data.scopes:
         if scope not in security_scopes.scopes:
             raise HTTPException(

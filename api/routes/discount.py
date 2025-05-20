@@ -2,7 +2,7 @@ from typing import Annotated
 from fastapi import APIRouter, Query, Security
 from starlette import status
 from starlette.exceptions import HTTPException
-from api.dependencies.auth import get_current_user
+from api.dependencies.auth import get_current_user, get_api_key
 from api.schemas.message import Message
 from api.schemas.discount import DiscountCreate, DiscountRead, DiscountUpdate
 from api.schemas.pagination import DiscountPagination
@@ -10,7 +10,7 @@ from api.schemas.user import UserScopes, User
 from api.services.discount import DiscountService
 
 
-router = APIRouter(prefix="/discount", tags=["Discount"])
+router = APIRouter(prefix="/discount", tags=["Discount"], dependencies=[Security(get_api_key)])
 
 service = DiscountService()
 

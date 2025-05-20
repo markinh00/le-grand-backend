@@ -1,10 +1,9 @@
-from fastapi import FastAPI, Security
+from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-from api.dependencies.auth import get_api_key
 from api.routes import customer, address, product, image, reset, discount, order, admin
 from api.routes.auth import register, login, me
 
-app = FastAPI(dependencies=[Security(get_api_key)])
+app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,

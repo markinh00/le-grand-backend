@@ -2,14 +2,14 @@ from typing import Annotated
 from fastapi import APIRouter, Form, UploadFile, Query, Security
 from starlette import status
 from starlette.exceptions import HTTPException
-from api.dependencies.auth import get_current_user
+from api.dependencies.auth import get_current_user, get_api_key
 from api.schemas.message import Message
 from api.schemas.pagination import ProductPagination
 from api.schemas.product import ProductRead, ProductCreate, ProductUpdate
 from api.schemas.user import UserScopes
 from api.services.product import ProductService
 
-router = APIRouter(prefix="/product", tags=["product"])
+router = APIRouter(prefix="/product", tags=["product"], dependencies=[Security(get_api_key)])
 
 service = ProductService()
 
