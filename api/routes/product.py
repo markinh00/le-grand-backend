@@ -5,7 +5,7 @@ from starlette.exceptions import HTTPException
 from api.dependencies.auth import get_current_user, get_api_key
 from api.schemas.message import Message
 from api.schemas.pagination import ProductPagination
-from api.schemas.product import ProductRead, ProductCreate, ProductUpdate
+from api.schemas.product import ProductRead, ProductCreate, ProductUpdate, ProductSearchParams
 from api.schemas.user import UserScopes
 from api.services.product import ProductService
 
@@ -40,6 +40,12 @@ def create_product(
     response_model=list[ProductRead])
 def get_all_products(query: Annotated[ProductPagination, Query()]):
     return  service.get_all_products(query)
+
+@router.get(
+    "/search",
+    response_model=list[ProductRead])
+def search_products(search_queries: Annotated[ProductSearchParams, Query()]):
+    return service.search_product(search_queries)
 
 
 @router.get(

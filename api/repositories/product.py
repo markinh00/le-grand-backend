@@ -3,7 +3,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlmodel import Session, select, desc, distinct
 from api.models.product import Product
 from api.schemas.pagination import ProductPagination
-from api.schemas.product import ProductUpdate
+from api.schemas.product import ProductUpdate, ProductSearchParams
 from api.services.db.image_storage import upload_image, delete_image
 
 
@@ -32,6 +32,14 @@ class ProductRepository:
         )
         return list(self.session.exec(statement).all())
 
+    def search(self, params: ProductSearchParams) -> list[Product]:
+        statement = select(Product)
+        for key, value in params.model_dump().items():
+            if value is not None:
+                column = getattr(Product, key)
+                statement = statement.where(column.ilike(f"%{value}%"))
+        return list(self.session.exec(statement).all())
+
     def get_all_categories(self) -> list[str]:
         statement = select(distinct(Product.category))
         return list(self.session.exec(statement).all())
@@ -40,29 +48,32 @@ class ProductRepository:
         return self.session.get(Product, product_id)
 
     def update(self, product_id: int, new_data: ProductUpdate) -> Product | None:
-        product = self.get_by_id(product_id)
+        try:
+            product = self.get_by_id(product_id)
 
-        if not product:
-            return None
+            if not product:
+                return None
 
-        for key, value in new_data.model_dump().items():
-            if value:
-                if key == "delete_img":
-                    delete_image(product.img_url)
-                    product.img_url = os.getenv("DEFAULT_IMAGE_URL")
+            for key, value in new_data.model_dump().items():
+                if value:
+                    if key == "delete_img":
+                        delete_image(product.img_url)
+                        product.img_url = os.getenv("DEFAULT_IMAGE_URL")
 
-                elif key == "img_file":
-                    delete_image(product.img_url)
-                    img_url: str = upload_image(value)
-                    product.img_url = img_url
+                    elif key == "img_file":
+                        delete_image(product.img_url)
+                        img_url: str = upload_image(value)
+                        product.img_url = img_url
 
-                else:
-                    setattr(product, key, value)
+                    else:
+                        setattr(product, key, value)
 
-        self.session.add(product)
-        self.session.commit()
-        self.session.refresh(product)
-        return product
+            self.session.add(product)
+            self.session.commit()
+            self.session.refresh(product)
+            return product
+        except Exception as e:
+            raise e
 
     def delete(self, product_id: int):
         product = self.get_by_id(product_id)

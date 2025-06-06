@@ -58,18 +58,65 @@ def populate_database():
         discount4 = Discount(name="Combo Cookies", value=20, enabled=True)
 
         # Products
-        product1 = Product(name="Cookie de Chocolate", price=4.5, description="Feito com chocolate belga", category="Cookies", img_url="http://localhost:8000/image/572cb3da-e0d7-4849-afca-3bb7c4be24f6.jpeg")
-        product2 = Product(name="Cookie de Aveia e Mel", price=3.5, description="Saudável e saboroso", category="Cookies", img_url="http://localhost:8000/image/75804a10-0407-478d-9cc0-384960dd55a0.jpg")
-        product3 = Product(name="Pão Francês", price=0.8, description="Crocante por fora, macio por dentro", category="Pães", img_url="http://localhost:8000/image/fc99b584-0b45-4b3f-aa7b-f1ed50e40031.jpg")
-        product4 = Product(name="Pão de Queijo", price=2.5, description="Feito com queijo da Serra da Canastra", category="Pães", img_url="http://localhost:8000/image/ca00107e-4498-4e6a-9567-bc6ebed9a2f5.jpg")
-        product5 = Product(name="Cookie Recheado", price=5.5, description="Recheado com doce de leite", category="Cookies", img_url="http://localhost:8000/image/845b25f1-a7bf-4d89-aab8-17a068b51943.jpg")
-        product6 = Product(name="Baguete Integral", price=3.0, description="Pão baguete com farinha integral", category="Pães", img_url="http://localhost:8000/image/cee3f6f9-4fc3-4c82-a22d-aaf4828b9cc7.jpg")
-        product7 = Product(name="Pão Australiano", price=3.8, description="Macio e levemente adocicado", category="Pães", img_url="http://localhost:8000/image/49054b39-9ac1-48ab-a623-7d93b1a005b3.jpg")
-        product8 = Product(name="Cookie Triplo de Chocolate", price=6.0, description="Feito com três tipos de chocolate", category="Cookies", img_url="http://localhost:8000/image/a788f776-6075-4a03-9564-f4f8c4dae1b6.jpg")
-        product9 = Product(name="Bolo de Cenoura com Cobertura de Chocolate", price=7.5, description="Tradicional e delicioso", category="Bolos", img_url="http://localhost:8000/image/dad8efde-26d7-4a4f-ab11-476b133caadb.jpg")
-        product10 = Product(name="Bolo Red Velvet", price=8.5, description="Com cobertura de cream cheese", category="Bolos", img_url="http://localhost:8000/image/743af917-aefe-44fd-9bf7-10f232e2f925.jpg")
-        product11 = Product(name="Bolo de Fubá com Goiabada", price=6.5, description="Sabor de fazenda", category="Bolos", img_url="http://localhost:8000/image/72b68733-6e78-4d22-ad25-35792486f9ec.jpg")
-        product12 = Product(name="Bolo de Laranja", price=6.0, description="Feito com suco natural de laranja", category="Bolos", img_url="http://localhost:8000/image/56083f38-e518-4589-9cfc-065fc0069dd5.jpg")
+        product1 = Product(name="Cookie de Chocolate", price=4.5,
+                           description="Delicioso cookie artesanal feito com chocolate belga meio amargo, crocante por fora e macio por dentro. Perfeito para acompanhar um café ou como sobremesa.",
+                           category="Cookies",
+                           img_url="http://localhost:8000/image/572cb3da-e0d7-4849-afca-3bb7c4be24f6.jpeg")
+
+        product2 = Product(name="Cookie de Aveia e Mel", price=3.5,
+                           description="Cookie nutritivo feito com aveia integral, mel puro e um toque de canela. Uma opção saudável e saborosa para o seu lanche.",
+                           category="Cookies",
+                           img_url="http://localhost:8000/image/75804a10-0407-478d-9cc0-384960dd55a0.jpg")
+
+        product3 = Product(name="Pão Francês", price=0.8,
+                           description="Clássico pão francês com casca crocante e interior macio e aerado. Ideal para o café da manhã ou para preparar sanduíches.",
+                           category="Pães",
+                           img_url="http://localhost:8000/image/fc99b584-0b45-4b3f-aa7b-f1ed50e40031.jpg")
+
+        product4 = Product(name="Pão de Queijo", price=2.5,
+                           description="Tradicional pão de queijo mineiro, feito com queijo da Serra da Canastra e polvilho de qualidade. Crocante por fora e derretendo por dentro.",
+                           category="Pães",
+                           img_url="http://localhost:8000/image/ca00107e-4498-4e6a-9567-bc6ebed9a2f5.jpg")
+
+        product5 = Product(name="Cookie Recheado", price=5.5,
+                           description="Cookie generoso recheado com doce de leite cremoso, perfeito para os amantes de sobremesas ricas e intensas.",
+                           category="Cookies",
+                           img_url="http://localhost:8000/image/845b25f1-a7bf-4d89-aab8-17a068b51943.jpg")
+
+        product6 = Product(name="Baguete Integral", price=3.0,
+                           description="Baguete leve e crocante feita com farinha integral e fermentação natural. Ótima escolha para quem busca uma alimentação equilibrada.",
+                           category="Pães",
+                           img_url="http://localhost:8000/image/cee3f6f9-4fc3-4c82-a22d-aaf4828b9cc7.jpg")
+
+        product7 = Product(name="Pão Australiano", price=3.8,
+                           description="Pão macio, de sabor levemente adocicado, com cor escura característica e aroma inconfundível. Vai bem com manteiga ou hambúrgueres gourmet.",
+                           category="Pães",
+                           img_url="http://localhost:8000/image/49054b39-9ac1-48ab-a623-7d93b1a005b3.jpg")
+
+        product8 = Product(name="Cookie Triplo de Chocolate", price=6.0,
+                           description="Cookie intenso feito com três tipos de chocolate: ao leite, meio amargo e branco. Uma explosão de sabor a cada mordida.",
+                           category="Cookies",
+                           img_url="http://localhost:8000/image/a788f776-6075-4a03-9564-f4f8c4dae1b6.jpg")
+
+        product9 = Product(name="Bolo de Cenoura com Cobertura de Chocolate", price=7.5,
+                           description="Bolo fofinho de cenoura com uma generosa cobertura de chocolate caseiro. Sabor da infância em cada fatia.",
+                           category="Bolos",
+                           img_url="http://localhost:8000/image/dad8efde-26d7-4a4f-ab11-476b133caadb.jpg")
+
+        product10 = Product(name="Bolo Red Velvet", price=8.5,
+                            description="Bolo de massa aveludada e levemente achocolatada, com recheio e cobertura de cream cheese suave. Elegância e sabor em uma sobremesa sofisticada.",
+                            category="Bolos",
+                            img_url="http://localhost:8000/image/743af917-aefe-44fd-9bf7-10f232e2f925.jpg")
+
+        product11 = Product(name="Bolo de Fubá com Goiabada", price=6.5,
+                            description="Receita tradicional de bolo de fubá com pedaços de goiabada derretida. Aroma de fazenda e gosto de aconchego.",
+                            category="Bolos",
+                            img_url="http://localhost:8000/image/72b68733-6e78-4d22-ad25-35792486f9ec.jpg")
+
+        product12 = Product(name="Bolo de Laranja", price=6.0,
+                            description="Bolo úmido e aromático feito com suco natural de laranja. Refrescante e ideal para qualquer hora do dia.",
+                            category="Bolos",
+                            img_url="http://localhost:8000/image/56083f38-e518-4589-9cfc-065fc0069dd5.jpg")
 
         session.add_all([address1, address2, address3, address4,
                          discount1, discount2, discount3, discount4,

@@ -3,7 +3,7 @@ import os
 from api.models.product import Product
 from api.repositories.product import ProductRepository
 from api.schemas.pagination import ProductPagination
-from api.schemas.product import ProductCreate, ProductRead, ProductUpdate
+from api.schemas.product import ProductCreate, ProductRead, ProductUpdate, ProductSearchParams
 from api.services.db.sqlmodel.database import get_session
 from api.services.db.image_storage import upload_image
 
@@ -24,6 +24,9 @@ class ProductService:
 
     def get_all_products(self, query: ProductPagination) -> list[Product]:
         return self.repository.get_all(query)
+
+    def search_product(self, search_queries: ProductSearchParams) -> list[Product]:
+        return self.repository.search(search_queries)
 
     def get_all_categories(self) -> list[str]:
         return self.repository.get_all_categories()

@@ -43,7 +43,7 @@ class DeliveryRead(OrderRead):
 
 
 class PickUpRead(OrderRead):
-    date: datetime = Field(ge=datetime.now(ZoneInfo("America/Sao_Paulo")))
+    date: datetime
 
 
 class OrderUpdate(BaseModel):

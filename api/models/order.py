@@ -85,7 +85,7 @@ class Delivery(Order):
 
 
 class PickUp(Order):
-    date: datetime = Field(ge=datetime.now())
+    date: datetime
 
     @model_validator(mode="after")
     def fill_fields(self) -> Self:
