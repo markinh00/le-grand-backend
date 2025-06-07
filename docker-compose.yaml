@@ -31,7 +31,7 @@ services:
       - my_network
 
   mongo:
-    image: mongo
+    image: mongo:8.0
     restart: always
     container_name: mongo_db
     volumes:
@@ -46,7 +46,7 @@ services:
       - my_network
 
   mongo-express:
-    image: mongo-express
+    image: mongo-express:1.0.2-20-alpine3.19
     restart: always
     container_name: mongo_express_db
     ports:
